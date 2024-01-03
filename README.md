@@ -1,13 +1,23 @@
 # How-to-show-all-axis-labels-in-Blazor-chart
 
-This article explains how to show all axis label in Blazor Chart Component
+This article explains how to display axis labels without intersecting in the Blazor Chart Component.
 
 **Showing all axis labels in Blazor chart**
 
-By default, intersecting axis labels are hidden in the [Blazor Chart](https://www.syncfusion.com/blazor-components/blazor-charts). You are provided with options to display all the labels and position them intelligently when they collide by using [LabelIntersectAction](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.ChartCommonAxis.html#Syncfusion_Blazor_Charts_ChartCommonAxis_LabelIntersectAction) property. You can choose to hide the intersecting labels or rotate all the labels to arrange in a smart manner within available space. 
+By default, the axis labels that intersect with each other will be trimmed. [Blazor Chart](https://www.syncfusion.com/blazor-components/blazor-charts) has options to make all the labels visible and position the collided labels smartly by using [LabelIntersectAction](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.LabelIntersectAction.html) property.
 
-The following code snippet demonstrates how to rotate axis labels when they intersect.
+The [LabelIntersectAction](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.LabelIntersectAction.html) property includes the following customization actions:
 
+- [None](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.LabelIntersectAction.html#Syncfusion_Blazor_Charts_LabelIntersectAction_None)- Show all labels, regardless of intersections.
+- [Hide](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.LabelIntersectAction.html#Syncfusion_Blazor_Charts_LabelIntersectAction_Hide)- Hide labels that intersect with each other.
+- [Trim](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.LabelIntersectAction.html#Syncfusion_Blazor_Charts_LabelIntersectAction_Trim)- Trim labels to fit within the available space when they intersect.
+- [Wrap](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.LabelIntersectAction.html#Syncfusion_Blazor_Charts_LabelIntersectAction_Wrap)- Wrap labels to multiple lines when they intersect.
+- [MultipleRows](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.LabelIntersectAction.html#Syncfusion_Blazor_Charts_LabelIntersectAction_MultipleRows)- Display labels in multiple rows when they intersect.
+- [Rotate45](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.LabelIntersectAction.html#Syncfusion_Blazor_Charts_LabelIntersectAction_Rotate45)- Rotate labels by 45 degrees when they intersect.
+- [Rotate90](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.LabelIntersectAction.html#Syncfusion_Blazor_Charts_LabelIntersectAction_Rotate90)- Rotate labels by 90 degrees when they intersect. 
+
+In the following code example, the intersect labels are rotated to 45 degrees.
+ 
 **Index.razor**
 
 ```cshtml
@@ -15,10 +25,13 @@ The following code snippet demonstrates how to rotate axis labels when they inte
 @using Syncfusion.Blazor.Charts
 
 <SfChart Title="Olympic Medals" Width="1000">
-	<ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category" LabelIntersectAction="LabelIntersectAction.Rotate45" />
+
+	<ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category" LabelIntersectAction="LabelIntersectAction.Rotate45"/>
+
 	<ChartSeriesCollection>
-		<ChartSeries DataSource="@MedalDetails" XName="X" YName="Y" Type="ChartSeriesType.Column" />
+		<ChartSeries DataSource="@MedalDetails" XName="X" YName="Y" Type="ChartSeriesType.Column"/>
 	</ChartSeriesCollection>
+
 </SfChart>
 
 @code {
@@ -57,7 +70,7 @@ The following code snippet illustrates the output of the above code snippet.
 
 **Conclusion**
 
-I hope you enjoyed learning how to show all axis labels in Blazor Chart Component.
+I hope you enjoyed learning how to display axis labels smartly without intersecting in Blazor Chart Component.
 
 You can refer to our [Blazor Chart feature tour](https://www.syncfusion.com/blazor-components/blazor-charts) page to know about its other groundbreaking feature representations and [documentation](https://blazor.syncfusion.com/documentation/chart/getting-started), and how to quickly get started for configuration specifications. You can also explore our [Blazor Chart example](https://blazor.syncfusion.com/demos/chart/line?theme=bootstrap5) to understand how to create and manipulate data.
 
