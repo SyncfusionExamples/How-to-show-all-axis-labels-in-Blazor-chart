@@ -1,79 +1,78 @@
-# How-to-show-all-axis-labels-in-Blazor-chart
+# How to Show All Axis Labels in a Syncfusion Blazor Chart
 
-This article explains how to display axis labels without intersecting in the Blazor Chart Component.
+## Overview
 
-**Showing all axis labels in Blazor chart**
+This sample demonstrates how to display all category axis labels in a Syncfusion [Blazor Charts](https://www.syncfusion.com/blazor-components/blazor-charts) component when labels would normally overlap due to limited axis space.
 
-By default, the axis labels that intersect with each other will be trimmed. [Blazor Chart](https://www.syncfusion.com/blazor-components/blazor-charts) has options to make all the labels visible and position the collided labels smartly by using [LabelIntersectAction](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.LabelIntersectAction.html) property.
+The application renders a column chart using category-based data and configures the primary X-axis with the `LabelIntersectAction` property. Instead of trimming or hiding labels, the sample rotates intersecting labels by 45 degrees so that each category remains visible and readable. This technique is useful when visualizing datasets that contain long text labels or a large number of categories.
 
-The [LabelIntersectAction](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.LabelIntersectAction.html) property includes the following customization actions:
+## Key Features
 
-- [None](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.LabelIntersectAction.html#Syncfusion_Blazor_Charts_LabelIntersectAction_None)- Show all labels, regardless of intersections.
-- [Hide](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.LabelIntersectAction.html#Syncfusion_Blazor_Charts_LabelIntersectAction_Hide)- Hide labels that intersect with each other.
-- [Trim](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.LabelIntersectAction.html#Syncfusion_Blazor_Charts_LabelIntersectAction_Trim)- Trim labels to fit within the available space when they intersect.
-- [Wrap](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.LabelIntersectAction.html#Syncfusion_Blazor_Charts_LabelIntersectAction_Wrap)- Wrap labels to multiple lines when they intersect.
-- [MultipleRows](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.LabelIntersectAction.html#Syncfusion_Blazor_Charts_LabelIntersectAction_MultipleRows)- Display labels in multiple rows when they intersect.
-- [Rotate45](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.LabelIntersectAction.html#Syncfusion_Blazor_Charts_LabelIntersectAction_Rotate45)- Rotate labels by 45 degrees when they intersect.
-- [Rotate90](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.LabelIntersectAction.html#Syncfusion_Blazor_Charts_LabelIntersectAction_Rotate90)- Rotate labels by 90 degrees when they intersect. 
+- Uses the `SfChart` component to render a chart visualization.
+- Configures `ChartPrimaryXAxis` with:
+  - `ValueType="ValueType.Category"` for category-based axis labels.
+  - `LabelIntersectAction="LabelIntersectAction.Rotate45"` to display all labels without trimming.
+- Uses the `ChartSeriesCollection` component to host chart series.
+- Uses a `ChartSeries` configured with:
+  - `Type="ChartSeriesType.Column"` for column chart rendering.
+  - `DataSource="@MedalDetails"` for data binding.
+  - `XName="X"` to map category values.
+  - `YName="Y"` to map numeric values.
+- Demonstrates handling of long category names such as country names without losing label visibility.
+- Uses a strongly typed `ChartData` model for chart binding.
 
-In the following code example, the intersect labels are rotated to 45 degrees.
- 
-**Index.razor**
+## Prerequisites
 
-```cshtml
+- [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) or [Visual Studio Code](https://code.visualstudio.com/)
+- [.NET SDK](https://dotnet.microsoft.com/en-us/download/dotnet) compatible with the project's target framework
 
-@using Syncfusion.Blazor.Charts
+## How to Run the Project
 
-<SfChart Title="Olympic Medals" Width="1000">
+**Visual Studio 2022**
 
-	<ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category" LabelIntersectAction="LabelIntersectAction.Rotate45"/>
+1. Clone or download the repository.
+2. Open the project file:
 
-	<ChartSeriesCollection>
-		<ChartSeries DataSource="@MedalDetails" XName="X" YName="Y" Type="ChartSeriesType.Column"/>
-	</ChartSeriesCollection>
+   `AxisLabel/AxisLabel.csproj`
 
-</SfChart>
+3. Restore the NuGet packages.
+4. Build the project.
+5. Run the application using **Ctrl+F5**.
 
-@code {
+**Visual Studio Code**
 
-	public class ChartData
-	{
-		public string X { get; set; }
-		public double Y { get; set; }
-	}
+1. Open the repository folder in Visual Studio Code.
+2. Open the integrated terminal.
+3. Navigate to the project folder:
 
-	public List<ChartData> MedalDetails = new List<ChartData>
-	{
-		new ChartData { X= "South Korea", Y= 39 },
-		new ChartData { X= "India", Y= 61 },
-		new ChartData { X= "Pakistan", Y= 20 },
-		new ChartData { X= "Germany", Y= 65 },
-		new ChartData { X= "Australia", Y= 15 },
-		new ChartData { X= "Italy", Y= 29 },
-		new ChartData { X= "United Kingdom", Y= 44 },
-		new ChartData { X= "Saudi Arabia", Y= 9 },
-		new ChartData { X= "Russia", Y= 40 },
-		new ChartData { X= "Mexico", Y= 31 },
-		new ChartData { X= "Brazil", Y= 75 },
-		new ChartData { X= "China", Y= 51 }
-	};
-
-}
-
+```bash
+cd AxisLabel
 ```
 
-The following code snippet illustrates the output of the above code snippet.
+4. Restore NuGet packages:
 
-**Output:**
+```bash
+dotnet restore
+```
 
-![](/all-axis-labels.png)
+5. Run the application:
 
-**Conclusion**
+```bash
+dotnet run
+```
 
-I hope you enjoyed learning how to display axis labels smartly without intersecting in Blazor Chart Component.
+6. Open the local application URL displayed in the terminal after the application starts.
 
-You can refer to our [Blazor Chart feature tour](https://www.syncfusion.com/blazor-components/blazor-charts) page to know about its other groundbreaking feature representations and [documentation](https://blazor.syncfusion.com/documentation/chart/getting-started), and how to quickly get started for configuration specifications. You can also explore our [Blazor Chart example](https://blazor.syncfusion.com/demos/chart/line?theme=bootstrap5) to understand how to create and manipulate data.
+## Project Structure
 
-For current customers, you can check out our components from the [License and Downloads](https://www.syncfusion.com/sales/teamlicense) page. If you are new to Syncfusion, you can try our 30-day [free trial](https://www.syncfusion.com/downloads/blazor) to check out our other controls.
+- `AxisLabel/Pages/Index.razor` - Implements the Syncfusion Blazor Chart sample and demonstrates axis label collision handling using `LabelIntersectAction.Rotate45`.
 
-If you have any queries or require clarifications, please let us know in the comments section below. You can also contact us through our [support forums](https://www.syncfusion.com/forums), [support portal](https://support.syncfusion.com/create), or [feedback portal](https://www.syncfusion.com/feedback/blazor-components?control=charts). We are always happy to assist you!
+## Support and Feedback
+
+- For general product questions, visit the [Syncfusion Community Forum](https://www.syncfusion.com/forums) or [Syncfusion Support](https://www.syncfusion.com/support).
+- To report an issue specific to this sample, open a GitHub issue in this repository.
+- Refer to the official documentation for axis label customization and label intersection handling: https://help.syncfusion.com/chart-sdk/blazor/charts/axis-customization
+
+## License
+
+This is a Syncfusion sample project provided to demonstrate product usage. Review the [Syncfusion license terms](https://www.syncfusion.com/sales/pricing?category=ui-components) before using Syncfusion components in your own applications.
